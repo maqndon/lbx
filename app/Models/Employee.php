@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
+=======
+
+    protected $primaryKey = 'employee_id';
+
+>>>>>>> main
 }

@@ -37,8 +37,13 @@ return [
 
     'guards' => [
         'web' => [
+<<<<<<< HEAD
             'driver' => 'session',
             'provider' => 'users',
+=======
+            'driver' => 'sanctum',
+            'provider' => null,
+>>>>>>> main
         ],
     ],
 

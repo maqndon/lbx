@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use DateTime;
 use League\Csv\Reader;
 use App\Models\Employee;
+use App\Traits\DateFormat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
+
+    use DateFormat;
+
     // Retrieve a list of all employees
     public function index()
     {
@@ -75,6 +80,10 @@ class EmployeeController extends Controller
 
                     // Iterate over each record in the batch
                     foreach ($chunk as $record) {
+                        // Convert dates to 'Y-m-d' format
+                        $dateOfBirth = $this->format_date($record['Date of Birth']);
+                        $dateOfJoining = $this->format_date($record['Date of Joining']);
+                        $timeOfBirth = $this->format_time($record['Time of Birth']);
                         // Build an array of employee data from the CSV fields
                         $employees[] = [
                             'employee_id' => $record['Emp ID'],
@@ -85,11 +94,11 @@ class EmployeeController extends Controller
                             'last_name' => $record['Last Name'],
                             'gender' => $record['Gender'],
                             'email' => $record['E Mail'],
-                            'date_of_birth' => $record['Date of Birth'],
-                            'time_of_birth' => $record['Time of Birth'],
-                            'age_in_years' => $record['Age in Yrs.'],
-                            'date_of_joining' => $record['Date of Joining'],
-                            'age_in_company' => $record['Age in Company (Years)'],
+                            'date_of_birth' => $dateOfBirth,
+                            'time_of_birth' => $timeOfBirth,
+                            'age' => $record['Age in Yrs.'],
+                            'date_of_joining' => $dateOfJoining,
+                            'years_in_company' => $record['Age in Company (Years)'],
                             'phone_number' => $record['Phone No. '],
                             'place_name' => $record['Place Name'],
                             'county' => $record['County'],

@@ -48,7 +48,7 @@ If this were a real-world task, additional considerations might include:
 - Implementing authentication and authorization.
 - Adding unit and integration tests.
 - Handling potential CSV parsing errors more gracefully.
-- Implementing pagination for the `GET /api/v1/employee` endpoint.
+- Implementing pagination for the `GET /api/employee` endpoint.
 - Optimizing the batch import process to handle extremely large files efficiently, possibly using queue jobs.
 - Detailed API documentation using tools like Swagger.
 

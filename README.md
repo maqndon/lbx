@@ -4,7 +4,7 @@
 
 1. Clone the repository:
     ```bash
-    git clone {repository_url}
+    git clone https://github.com/maqndon/lbx.git
     cd lbx
     ```
 
@@ -32,10 +32,10 @@ DB_PASSWORD=your_password
     ```
 
 ## API Endpoints
-- POST /api/v1/employee - Import employees from a CSV file.
-- GET /api/v1/employee - Get all employees.
-- GET /api/v1/employee/{id} - Get a specific employee by ID.
-- DELETE /api/v1/employee/{id} - Delete a specific employee by ID.
+- POST /api/employee - Import employees from a CSV file.
+- GET /api/employee - Get all employees.
+- GET /api/employee/{id} - Get a specific employee by ID.
+- DELETE /api/employee/{id} - Delete a specific employee by ID.
 
 ## Notes
 - The API expects the CSV file to have headers as specified in the provided import.csv file.

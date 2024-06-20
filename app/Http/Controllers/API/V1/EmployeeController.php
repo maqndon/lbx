@@ -39,10 +39,8 @@ class EmployeeController extends Controller
         return response()->json(null, 204);
     }
 
-    // Store employees from a CSV file
     public function store(Request $request)
     {
-        // Validar el archivo subido
         $validator = Validator::make($request->all(), [
             'csv_file' => 'required|mimes:csv,txt',
         ]);
@@ -51,12 +49,11 @@ class EmployeeController extends Controller
             return response()->json(['error' => $validator->errors()], 400);
         }
 
-        // Almacenar el archivo subido
         $path = $request->file('csv_file')->store('csv');
         $csv = Reader::createFromPath(storage_path('app/' . $path), 'r');
         $csv->setHeaderOffset(0);
 
-        $chunkSize = 100; // ajustar el tamaño del chunk según tus necesidades
+        $chunkSize = 100; 
         $chunks = array_chunk(iterator_to_array($csv->getRecords()), $chunkSize);
 
         foreach ($chunks as $chunk) {
@@ -89,3 +86,4 @@ class EmployeeController extends Controller
 
         return response()->json(['message' => 'Employees imported successfully'], 201);
     }
+}
